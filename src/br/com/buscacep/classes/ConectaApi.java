@@ -1,6 +1,5 @@
 package br.com.buscacep.classes;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -32,11 +31,11 @@ public class ConectaApi {
             String jsonRetornada = response.body();
             this.json = jsonRetornada;
 
-        } catch (IOException | InterruptedException e) {
+        } catch(IllegalArgumentException e) {
             throw new RuntimeException("CEP inválido");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("CEP inválido");
         }
     }
 

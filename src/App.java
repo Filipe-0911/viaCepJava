@@ -33,13 +33,15 @@ public class App {
 
                 listaEnderecos.add(endereco);
           
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                System.out.println("Programa finalizado com sucesso.");
-            }
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Finalizando aplicação");
+                valorObtidoSystem = "sair";
+
+            } 
         }
         
+        in.close();
         if(listaEnderecos.size() > 0) {
             CriaArquivoJson arquivo = new CriaArquivoJson("enderecos.json", listaEnderecos);
             arquivo.escreveLista();
