@@ -6,8 +6,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import javax.management.RuntimeErrorException;
-
 public class ConectaApi {
     private String url = "https://viacep.com.br/ws/%s/json/";
     private String json;
