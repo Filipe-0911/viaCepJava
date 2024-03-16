@@ -32,8 +32,7 @@ public class App {
                 System.out.println(endereco);
 
                 listaEnderecos.add(endereco);
-        
-                
+          
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
