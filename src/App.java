@@ -17,10 +17,10 @@ public class App {
         List<Endereco> listaEnderecos = new ArrayList<>();
 
         while(!valorObtidoSystem.equals("sair")) {
-            System.out.println("Digite um cep: ");
+            System.out.println("Digite um CEP para obter dados ou digite SAIR ");
             valorObtidoSystem = (String) in.nextLine();
-            
-            if(valorObtidoSystem.equals("sair")) break;
+
+            if(valorObtidoSystem.equalsIgnoreCase("sair")) break;
 
             Gson gson = new MeuGson().getGson();
 
@@ -29,6 +29,7 @@ public class App {
     
                 ConectaApi connect = new ConectaApi(cep.getCep());
                 Endereco endereco = gson.fromJson(connect.getJson(), Endereco.class);
+                System.out.println(endereco);
 
                 listaEnderecos.add(endereco);
         
@@ -40,8 +41,12 @@ public class App {
             }
         }
         
-        CriaArquivoJson arquivo = new CriaArquivoJson("enderecos.json", listaEnderecos);
-        arquivo.escreveLista();
-        in.close();
+        if(listaEnderecos.size() > 0) {
+            CriaArquivoJson arquivo = new CriaArquivoJson("enderecos.json", listaEnderecos);
+            arquivo.escreveLista();
+            in.close();
+        } else {
+            System.out.println("Você não informou nenhum CEP válido.");
+        }
     }
 }
