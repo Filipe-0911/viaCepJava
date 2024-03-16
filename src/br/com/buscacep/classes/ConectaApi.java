@@ -1,9 +1,12 @@
 package br.com.buscacep.classes;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+
+import javax.management.RuntimeErrorException;
 
 public class ConectaApi {
     private String url = "https://viacep.com.br/ws/%s/json/";
@@ -30,6 +33,9 @@ public class ConectaApi {
 
             String jsonRetornada = response.body();
             this.json = jsonRetornada;
+
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("CEP inválido");
 
         } catch (Exception e) {
             e.printStackTrace();
